@@ -1,6 +1,6 @@
 var stage;
-var mapHeightHexNo = 9;            // Number of vertical hexes
-var mapWidthHexNo = 21;             // Number of horizontal hexes
+var mapHeightHexNo = 10;            // Number of vertical hexes
+var mapWidthHexNo = 20;             // Number of horizontal hexes
 var mapStartX = 60;
 var mapStartY = 60;
 var mapHexSize = 30;
@@ -20,9 +20,9 @@ function init() {
     createMap(mapWidthHexNo, mapHeightHexNo);
     
     // Show text on top of page
-    logText = new createjs.Text("Log text gets shown here", "14px Arial");
-    logText.x = logText.y = 0;
-    stage.addChild(logText);
+    logTextField = new createjs.Text("Log text gets shown here", "14px Arial");
+    logTextField.x = logTextField.y = 0;
+    stage.addChild(logTextField);
 
     stage.update();
 }
@@ -58,12 +58,13 @@ function createHex (x,y,size, iterI, iterJ) {
     var hex = new createjs.Shape();
     hex.graphics.beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, y-20, 0, y+30).drawPolyStar(x,y,size,6,0,30);
     hex.id = [iterJ, iterI];
+    // add events for mouse hover on any hex
     hex.addEventListener("mouseover", function() {
-        console.log ("hex has centre at " + x + " and " + y);
-        console.log ("hex id is: " + hex.id);
+        debugText ("MouseOver hex id is: (" + hex.id + "). The Stage Index of the hex is [" + stage.getChildIndex(hex) + "]" );
+        mouseOverHex(stage.getChildIndex(hex))
     });
     hex.addEventListener("mouseout", function() {
-        console.log ("The mouse has forsaken us");
+        // empty right now
     });
     
     stage.addChild(hex);
@@ -85,15 +86,19 @@ function createHexIdLabel(labelX, labelY, iterI, iterJ) {
 }
 
 
-function mouseOverHex(event) {
-    var hexHover = new createjs.Shape();
-    hexHover.graphics.beginStroke("#ccc").beginLinearGradientFill(["#123456","#234567"], [0, 1], 0, y-20, 0, y+30).drawPolyStar(x,y,size,6,0,30);
-    
-    stage.addChild(hexHover);
+function mouseOverHex(stageIndex) {
+    // empty right now
+    stage.getChildAt(stageIndex).graphics.setStrokeStyle(8,"round").beginStroke("#F00");
     stage.update();
 }
 
 function mouseOutHex(event) {
     // empty right now
+    stage.update();
+}
+
+// Simple function to show a text label which tells the id of the hex over which mouse is placed
+function debugText (textString) {
+    logTextField.text = textString.toString();
     stage.update();
 }
