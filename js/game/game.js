@@ -1,6 +1,7 @@
 var stage;
 var mapHeightHexNo = 10;            // Number of vertical hexes
 var mapWidthHexNo = 20;             // Number of horizontal hexes
+var hexList = {};
 var mapStartX = 60;
 var mapStartY = 60;
 var mapHexSize = 30;
@@ -57,15 +58,12 @@ function createHex (x,y,size, iterI, iterJ) {
 
     var hex = new createjs.Shape();
     hex.graphics.beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, y-20, 0, y+30).drawPolyStar(x,y,size,6,0,30);
-    hex.id = [iterJ, iterI];
+    hex.id = iterJ + "x" + iterI;
+    // add the hex to our hexList with the id as identifier
+    hexList[hex.id] = hex;
     // add events for mouse hover on any hex
-    hex.addEventListener("mouseover", function() {
-        debugText ("MouseOver hex id is: (" + hex.id + "). The Stage Index of the hex is [" + stage.getChildIndex(hex) + "]" );
-        mouseOverHex(stage.getChildIndex(hex))
-    });
-    hex.addEventListener("mouseout", function() {
-        // empty right now
-    });
+    hex.addEventListener("mouseover", mouseOverHex);
+    hex.addEventListener("mouseout", mouseOutHex);
     
     stage.addChild(hex);
 }
@@ -86,14 +84,14 @@ function createHexIdLabel(labelX, labelY, iterI, iterJ) {
 }
 
 
-function mouseOverHex(stageIndex) {
-    // empty right now
-    stage.getChildAt(stageIndex).graphics.setStrokeStyle(8,"round").beginStroke("#F00");
+function mouseOverHex(event) {
+    debugText ("MouseOver hex id is: (" + event.target.id + "). The Stage Index of the hex is [" + stage.getChildIndex(event.target) + "]" );
+    event.target.graphics.setStrokeStyle(8,"round").beginStroke("#F00");
     stage.update();
 }
 
 function mouseOutHex(event) {
-    // empty right now
+    console.log("Target Name: " + event.target.id);  
     stage.update();
 }
 
