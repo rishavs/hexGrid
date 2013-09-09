@@ -75,7 +75,7 @@ function createHexIdLabel(labelX, labelY, iterI, iterJ) {
     hexIdLabel.x = labelX;
     hexIdLabel.y = labelY;
     
-    var cX = iterJ - (iterI - iterI&1) / 2;
+    var cX = iterJ - (iterI - (iterI&1)) / 2;
     var cZ = iterI;
     var cY = -1*(cX+cZ);
     
