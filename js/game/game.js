@@ -1,10 +1,13 @@
 var stage;
 var mapHeightHexNo = 10;            // Number of vertical hexes
-var mapWidthHexNo = 20;             // Number of horizontal hexes
+var mapWidthHexNo = 10;             // Number of horizontal hexes
 var hexList = {};
 var mapStartX = 60;
 var mapStartY = 60;
 var mapHexSize = 30;
+var mapHexGap = 2;
+var moveDistance = 3;
+
 
 // calculate hex width and height. We will use these values to offset neighbouring hexes
 var mapHexWidth = Math.sqrt(3)/2 * 2 * mapHexSize;
@@ -15,7 +18,7 @@ function init() {
     stage = new createjs.Stage("demoCanvas");
     
     // Turn on mouseover support
-    stage.enableMouseOver(20);  
+    stage.enableMouseOver(49);  
     
     // Call the function to create the hex grid
     createMap(mapWidthHexNo, mapHeightHexNo);
@@ -45,10 +48,7 @@ function createMap (mapSizeX, mapSizeY) {
             
             //call the function to create individual hexes
             createHex (hexX, hexY, mapHexSize, i, j);
-            
-            // create labels over each hex telling its id. i have moved the labels a bit to the left and top so as to centre them in the hex
-            createHexIdLabel(hexX - 1/2* mapHexWidth + 5, hexY - 1/4* mapHexHeight, i, j);
-
+           
         }       
     }
     
@@ -57,8 +57,14 @@ function createMap (mapSizeX, mapSizeY) {
 function createHex (x,y,size, iterI, iterJ) {
 
     var hex = new createjs.Shape();
-    hex.graphics.beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, y-20, 0, y+30).drawPolyStar(x,y,size,6,0,30);
-    hex.id = iterJ + "x" + iterI;
+    hex.graphics.beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, y-20, 0, y+30).drawPolyStar(x,y,size-mapHexGap,6,0,30);
+	
+	// calculate and save the axial coordinates
+	var cX = iterJ - (iterI - (iterI&1)) / 2;
+    var cZ = iterI;
+    var cY = -1*(cX+cZ);
+    
+	hex.id = cX + "x" + cY + "y" + cZ + "z";
     hex.posX = x;
     hex.posY = y;
     // add the hex to our hexList with the id as identifier
@@ -70,30 +76,14 @@ function createHex (x,y,size, iterI, iterJ) {
     stage.addChild(hex);
 }
 
-function createHexIdLabel(labelX, labelY, iterI, iterJ) {
-    hexIdLabel = new createjs.Text("(" + iterJ + "," + iterI + ")", "10px Arial", "#666");
-    hexIdLabel.x = labelX;
-    hexIdLabel.y = labelY;
-    
-    var cX = iterJ - (iterI - (iterI&1)) / 2;
-    var cZ = iterI;
-    var cY = -1*(cX+cZ);
-    
-    hexIdLabel2 = new createjs.Text("(" + cX + "," + cY + "," +cZ + ")", "10px Arial", "#666");
-    hexIdLabel2.x = labelX;
-    hexIdLabel2.y = labelY+10;
-    stage.addChild(hexIdLabel,hexIdLabel2);
-}
-
-
 function mouseOverHex(event) {
     debugText ("MouseOver hex id is: (" + event.target.id + "). The Stage Index of the hex is [" + stage.getChildIndex(event.target) + "]. The position is: " + event.target.posX + "x" + event.target.posY +"y");
-    event.target.graphics.beginStroke("#000").beginLinearGradientFill(["#123","#f00"], [0, 1], 0, event.target.posY-20, 0, event.target.posY+30).drawPolyStar(event.target.posX,event.target.posY,mapHexSize,6,0,30);
+	event.target.graphics.clear().beginStroke("#888").beginLinearGradientFill(["#fafafa","#fafafa"], [0, 1], 0, event.target.posY-20, 0, event.target.posY+30).drawPolyStar(event.target.posX,event.target.posY,mapHexSize - mapHexGap - 1,6,0,30);
     stage.update();
 }
 
 function mouseOutHex(event) {
-    event.target.graphics.beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, event.target.posY-20, 0, event.target.posY+30).drawPolyStar(event.target.posX,event.target.posY,mapHexSize,6,0,30);
+    event.target.graphics.clear().beginStroke("#aaa").beginLinearGradientFill(["#eee","#fafafa"], [0, 1], 0, event.target.posY-20, 0, event.target.posY+30).drawPolyStar(event.target.posX,event.target.posY,mapHexSize - mapHexGap,6,0,30);
     stage.update();
 }
 
