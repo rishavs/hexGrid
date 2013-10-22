@@ -18,7 +18,7 @@ function init() {
     stage = new createjs.Stage("demoCanvas");
     
     // Turn on mouseover support
-    stage.enableMouseOver(49);  
+    stage.enableMouseOver();  
     
     // Call the function to create the hex grid
     createMap(mapWidthHexNo, mapHeightHexNo);
