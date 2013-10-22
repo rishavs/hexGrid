@@ -44,11 +44,11 @@ function handleFileLoaded(event) {
 	
 	switch (event.item.id) {
 		case "background":
-			background = new createjs.Shape(new createjs.Graphics().beginBitmapFill(event.result).drawRect(0,0,700,500));
+			background = new createjs.Shape(new createjs.Graphics().beginBitmapFill(event.result).drawRect(0,0,2560,1440));
 			bg_layer.addChild(background);
 			break;
 		case "character":
-			character = new createjs.Shape(new createjs.Graphics().beginBitmapFill(event.result).drawRect(0,0,700,500));
+			character = event.result
 			obj_layer.addChild(character);
 			break;
 	}
