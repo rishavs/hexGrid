@@ -89,6 +89,7 @@ function init() {
 			sw_quiver:[248,251],
 			sw_shoot:[252,255]
 						
+			//other anims: dir_meleeattack_normal1, dir_meleeattack_normal2, dir_meleeattack_crit, dir_meleeattack_backstab, dir_meleedamage_normal, dir_meleeattack_crit, dir_meleeattack_backstab etc.
 		}
 	};
 	 
