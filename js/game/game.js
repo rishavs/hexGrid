@@ -15,11 +15,11 @@ var mapHexHeight = 3/4 * 2 * mapHexSize;
 
 
 function init() {
-
+	
 	// Set canvas size
 	var gameArea = document.getElementById('demoCanvas');
-	gameArea.width = window.innerWidth - 20;
-	gameArea.height = window.innerHeight - 20;
+	gameArea.width = window.innerWidth-2;
+	gameArea.height = window.innerHeight - 50;
 	
 	//Create background object - separated from stage so that it doest needs to update
 	background_stage = new createjs.Stage("demoCanvas");
@@ -53,12 +53,42 @@ function init() {
     stage.update();
 	loadAssets();
 	
+	//---------------------------
+	//Create the temp UI
+	
+	document.getElementById("M1").onclick = helloAlert;
+	document.getElementById("M2").onclick = helloAlert;
+	document.getElementById("M3").onclick = helloAlert;
+	document.getElementById("M4").onclick = function () { alert('hello!'); };
+	
+	document.getElementById("F1").onclick = function () { alert('hello!'); };
+	document.getElementById("F2").onclick = function () { alert('hello!'); };
+	document.getElementById("F3").onclick = function () { alert('hello!'); };
+	document.getElementById("F4").onclick = function () { alert('hello!'); };
+	
+	document.getElementById("A1").onclick = function () { alert('hello!'); };
+	document.getElementById("A2").onclick = function () { alert('hello!'); };
+	document.getElementById("A3").onclick = function () { alert('hello!'); };
+	document.getElementById("A4").onclick = function () { alert('hello!'); };
+	
+	document.getElementById("S1").onclick = function () { alert('hello!'); };
+	document.getElementById("S2").onclick = function () { alert('hello!'); };
+	document.getElementById("S3").onclick = function () { alert('hello!'); };
+	document.getElementById("S4").onclick = function () { alert('hello!'); };
+	
+	document.getElementById("F1").onclick = function () { alert('hello!'); };
+	document.getElementById("F2").onclick = function () { alert('hello!'); };
+	document.getElementById("F3").onclick = function () { alert('hello!'); };
+	document.getElementById("F4").onclick = function () { alert('hello!'); };
+
+	
+	
 }
 
 function loadAssets() {
 
 	manifest = [
-		{src:"/assets/maps/test/grassland.jpg", id:"background"},
+		{src:"/assets/maps/test/elfland.jpg", id:"background"},
 		{src:"/assets/sprites/clothes.png", id:"character"}
 	];
 			
@@ -268,4 +298,9 @@ function mouseOutHex(event) {
 function debugText (textString) {
     logTextField.text = textString.toString();
     stage.update();
+}
+
+//Stupid function
+function helloAlert() { 
+	alert('hello!'); 
 }
