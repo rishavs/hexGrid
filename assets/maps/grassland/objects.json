@@ -1,0 +1,25 @@
+{
+    "creatures": [
+		{
+		"id" : "knight01",
+		"type": "Knight",
+		"position": "3x-5y2z",
+		"direction" : "ne"
+		},
+		{
+		"id" : "rogue01",
+		"type": "Rogue",
+		"position": "-1x-8y9z",
+		"direction" : "nw"
+		},
+		{
+		"id" : "scholar01",
+		"type": "Scholar",
+		"position": "27x-31y4z",
+		"direction" : "ss"
+		}
+    ],
+    "artefacts": [
+	
+    ]
+}

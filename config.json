@@ -1,11 +1,13 @@
 {
-    "name" : "XCS",
-    "version" : "0.1",
-	"mapHeightHexNo" : 10,
-	"mapWidthHexNo" : 10,
-	"mapStartX" : 60,
-	"mapStartY" : 60,
-	"mapHexSize" : 30,
-	"mapHexGap" : 2,
-	"moveDistance" : 3
+	"grid": {
+		"mapStartX": 26,
+		"mapStartY": 30
+	},
+	"hex": {
+		"mapHexSize": 30,
+		"mapHexGap": 2
+	},
+	"misc": {
+		"moveDistance" : 3
+	}
 }

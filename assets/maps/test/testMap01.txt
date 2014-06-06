@@ -1,10 +1,14 @@
--O-O-O-O-O-O-O-O-O
-O-O-O-O-O-O-O-O-O-
--O-O-O-O-O-O-O-O-O
-O-O-O-O-O-O-O-O-O-
--O-O-O-O-O-O-O-O-O
-O-O-O-O-O-O-O-O-O-
--O-O-O-O-O-O-O-O-O
-O-O-O-O-O-O-O-O-O-
--O-O-O-O-O-O-O-O-O
-O-O-O-O-O-O-O-O-O-
+{
+    "tileMap": [
+        "-O-O-O-O-O-O-O-O-O",
+        "O-O-O-O-O-O-O-O-O-",
+        "-O-O-x-O-O-O-O-O-O",
+        "O-O-O-O-O-O-O-O-O-",
+        "-O-O-O-O-x-O-O-O-O",
+        "O-O-O-O-O-O-O-O-O-",
+        "-O-O-x-O-O-O-O-O-O",
+        "O-O-x-x-O-O-O-O-O-",
+        "-O-O-O-O-O-O-O-O-O",
+        "O-O-O-O-O-O-O-O-O-"
+    ]
+}

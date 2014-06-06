@@ -1,0 +1,17 @@
+{
+	"Knight" : {
+		"sprite": "knight.png",
+		"spriteData": "spriteData.json"
+	},
+	"Rogue": {
+		"sprite": "rogue.png",
+		"spriteData": "spriteData.json"
+	},
+	"Scholar": {
+		"sprite": "scholar.png",
+		"spriteData": "spriteData.json"
+	},
+	"misc": {
+		"something" : "something"
+	}
+}
